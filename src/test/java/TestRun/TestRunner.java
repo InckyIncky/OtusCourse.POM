@@ -12,6 +12,7 @@ public class TestRunner extends BaseClass {
     String lastnameLatin = "Antonov";
     String birthDate ="25.04.1989";
     String blogName = "Nikolay";
+    String pathToPhoto = "C:\\Users\\nantonov\\Desktop\\PassBild\\ogurtsov.jpg";
 
 
     @Test
@@ -20,7 +21,7 @@ public class TestRunner extends BaseClass {
 
         MyWorkroom.openMyProfile();
 
-        MyProfile.fillData(firstname, firstnameLatin, lastname, lastnameLatin, birthDate, blogName);
+        MyProfile.fillData(firstname, firstnameLatin, lastname, lastnameLatin, birthDate, blogName, pathToPhoto);
     }
 
 }

@@ -25,14 +25,14 @@ public class MyProfile extends BaseClass {
     private static final By CONTACT_VALUE2 = By.id("id_contact-1-value");
     private static final By SAVE_CONTINUE = By.cssSelector("button[name='continue']");
 
-    public static void fillData(String firstname, String firstnameLatin, String lastname, String lastnameLatin, String birthDate, String blogName) {
-        fillPersonalData(firstname, firstnameLatin, lastname, lastnameLatin, birthDate, blogName);
+    public static void fillData(String firstname, String firstnameLatin, String lastname, String lastnameLatin, String birthDate, String blogName, String pathToPhoto) {
+        fillPersonalData(firstname, firstnameLatin, lastname, lastnameLatin, birthDate, blogName, pathToPhoto);
         fillAdditionalContactInfo();
 
         driver.findElement(SAVE_CONTINUE).click();
     }
 
-    public static void fillPersonalData(String firstname, String firstnameLatin, String lastname, String lastnameLatin, String birthDate, String blogName) {
+    public static void fillPersonalData(String firstname, String firstnameLatin, String lastname, String lastnameLatin, String birthDate, String blogName, String pathToPhoto) {
         driver.findElement(FIRSTNAME_LOCATOR).clear();
         driver.findElement(FIRSTNAME_LOCATOR).sendKeys(firstname);
         driver.findElement(FIRSTNAME_LATIN_LOCATOR).clear();
@@ -45,7 +45,7 @@ public class MyProfile extends BaseClass {
         driver.findElement(BIRTH_DATE_LOCATOR).clear();
         driver.findElement(BIRTH_DATE_LOCATOR).sendKeys(birthDate);
         unhide(driver, driver.findElement(ADD_PHOTO_LOCATOR));
-        driver.findElement(ADD_PHOTO_LOCATOR).sendKeys("C:\\Users\\nantonov\\Desktop\\PassBild\\ogurtsov.jpg");
+        driver.findElement(ADD_PHOTO_LOCATOR).sendKeys(pathToPhoto);
         driver.findElement(By.cssSelector("button[class='button button_blue js-choose-crop']")).click();
 
     }
