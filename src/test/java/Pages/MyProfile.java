@@ -1,6 +1,7 @@
 package Pages;
 
 import TestRun.BaseClass;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -71,7 +72,7 @@ public class MyProfile extends BaseClass {
 
         driver.findElement(SAVE_CONTINUE).click();
     }
-
+    @Step("Personal data")
     public void fillPersonalData(String firstname, String firstnameLatin, String lastname, String lastnameLatin, String birthDate, String blogName, String pathToPhoto) {
         driver.findElement(FIRSTNAME_LOCATOR).clear();
         driver.findElement(FIRSTNAME_LOCATOR).sendKeys(firstname);
@@ -93,7 +94,7 @@ public class MyProfile extends BaseClass {
         logger.info("Personal data filled");
 
     }
-
+    @Step("Main info")
     public void fillMainInfo() {
         driver.findElement(ADD_COUNTRY).click();
         driver.findElement(COUNTRY_VALUE).click();
@@ -111,7 +112,7 @@ public class MyProfile extends BaseClass {
 
         logger.info("Main info filled");
     }
-
+    @Step("Additional info")
     public void fillAdditionalContactInfo() {
         wait.until(ExpectedConditions.elementToBeClickable(CONTACT_TYPE_LOCATOR));
         driver.findElement(CONTACT_TYPE_LOCATOR).click();
@@ -144,7 +145,7 @@ public class MyProfile extends BaseClass {
                 + "return true;";
         ((JavascriptExecutor) driver).executeScript(unhideScript, element);
     }
-
+    @Step("Get actual results for Personal data")
     public List<String> getPersonalData() {
         List<String> personalDataActual = new ArrayList();
 
@@ -170,6 +171,7 @@ public class MyProfile extends BaseClass {
         return personalDataActual;
     }
 
+    @Step("Get actual results for Main info")
     public List<String> getMainInfo() {
         List<String> mainInfoActual = new ArrayList();
         String countryActual = driver.findElement(ADD_COUNTRY).getText();
@@ -198,6 +200,7 @@ public class MyProfile extends BaseClass {
         return mainInfoActual;
     }
 
+    @Step("Get actual results for Contact data")
     public List<String> getContactData() {
         List<String> contactDataActual = new ArrayList();
 

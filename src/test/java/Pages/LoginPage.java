@@ -2,6 +2,7 @@ package Pages;
 
 import TestRun.BaseClass;
 import appconfigs.AppConfigs;
+import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.By;
 
@@ -16,6 +17,7 @@ public class LoginPage extends BaseClass {
     private static final By passwordLocator = By.cssSelector("input[class*='js-psw-input']");
     private static final By submitButton = By.cssSelector("div[class='new-input-line new-input-line_last new-input-line_relative']");
 
+    @Step("login")
     public void login() {
         driver.get("https://otus.ru/");
 

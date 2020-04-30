@@ -19,7 +19,8 @@ public abstract class BaseClass {
 
     @BeforeAll
     public static void setUp() {
-        driver = WebDriverFactory.create(Browsers.CHROME);
+        String browser = System.getProperty("browser");
+        driver = WebDriverFactory.create(browser);
         driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 

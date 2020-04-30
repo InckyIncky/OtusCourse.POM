@@ -12,26 +12,23 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 @ExtendWith(SeleniumExtension.class)
 public class WebDriverFactory    {
 
-    public static WebDriver create(Browsers browser) {
+    public static WebDriver create(String browser) {
         WebDriver driver;
 
-        switch (browser) {
-            case CHROME:
-                WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
-                driver = new ChromeDriver();
-                break;
-            case FIREFOX:
-                WebDriverManager.getInstance(DriverManagerType.FIREFOX).setup();
-                driver = new FirefoxDriver();
-                break;
-            case EDGE:
-                WebDriverManager.getInstance(DriverManagerType.EDGE).setup();
-                driver = new EdgeDriver();
-
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + browser);
+        if (browser.equalsIgnoreCase(Browsers.CHROME.toString())) {
+            WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
+            driver = new ChromeDriver();
+        } else if (browser.equalsIgnoreCase(Browsers.FIREFOX.toString())) {
+            WebDriverManager.getInstance(DriverManagerType.FIREFOX).setup();
+            driver = new FirefoxDriver();
+/*        } else if(browser.equalsIgnoreCase(Browsers.EDGE.toString())){
+            WebDriverManager.getInstance(DriverManagerType.EDGE).setup();
+            driver = new EdgeDriver();*/
+        } else {
+            WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
+            driver = new ChromeDriver();
         }
+
         return driver;
     }
 }

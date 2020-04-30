@@ -10,8 +10,6 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-
 import java.util.*;
 
 public class TestRunner extends BaseClass {
@@ -35,8 +33,8 @@ public class TestRunner extends BaseClass {
 
 
     @Test
-    @DisplayName("Filling data")
-    public void run() {
+    @DisplayName("Filling data and checking")
+    public void runTest() {
         LoginPage loginPage = new LoginPage();
 
         loginPage.login();
