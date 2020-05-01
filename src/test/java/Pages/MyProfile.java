@@ -66,13 +66,13 @@ public class MyProfile extends BaseClass {
     public void fillData(String firstname, String firstnameLatin, String lastname, String lastnameLatin, String birthDate, String blogName, String pathToPhoto) {
         fillPersonalData(firstname, firstnameLatin, lastname, lastnameLatin, birthDate, blogName, pathToPhoto);
 
-        fillMainInfo();
+//        fillMainInfo();
 
         fillAdditionalContactInfo();
 
         driver.findElement(SAVE_CONTINUE).click();
     }
-    @Step("Personal data")
+    @Step("Fill personal data")
     public void fillPersonalData(String firstname, String firstnameLatin, String lastname, String lastnameLatin, String birthDate, String blogName, String pathToPhoto) {
         driver.findElement(FIRSTNAME_LOCATOR).clear();
         driver.findElement(FIRSTNAME_LOCATOR).sendKeys(firstname);
@@ -94,7 +94,7 @@ public class MyProfile extends BaseClass {
         logger.info("Personal data filled");
 
     }
-    @Step("Main info")
+    @Step("Fill main info")
     public void fillMainInfo() {
         driver.findElement(ADD_COUNTRY).click();
         driver.findElement(COUNTRY_VALUE).click();
@@ -112,7 +112,7 @@ public class MyProfile extends BaseClass {
 
         logger.info("Main info filled");
     }
-    @Step("Additional info")
+    @Step("Fill additional info")
     public void fillAdditionalContactInfo() {
         wait.until(ExpectedConditions.elementToBeClickable(CONTACT_TYPE_LOCATOR));
         driver.findElement(CONTACT_TYPE_LOCATOR).click();
