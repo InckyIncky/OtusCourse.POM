@@ -4,6 +4,7 @@ import Pages.LoginPage;
 import Pages.MyProfile;
 import Pages.MyWorkroom;
 import appconfigs.AppConfigs;
+import io.qameta.allure.Flaky;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,6 +34,7 @@ public class TestRunner extends BaseClass {
 
 
     @Test
+    @Flaky
     @DisplayName("Filling data and checking")
     public void runTest() {
         LoginPage loginPage = new LoginPage();
