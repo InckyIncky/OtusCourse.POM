@@ -152,7 +152,7 @@ public class MyProfile extends BaseClass {
         driver.findElement(SECOND_CONTACT_TYPE_LOCATOR).click();
 
         action.moveToElement(driver.findElement(CONTACT_TELEGA)).perform();
-        clickElement(driver.findElement(CONTACT_TELEGA));
+//        clickElement(driver.findElement(CONTACT_TELEGA));
 
         driver.findElement(CONTACT_TELEGA).click();
         driver.findElement(CONTACT_VALUE2).clear();
