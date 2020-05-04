@@ -104,19 +104,19 @@ public class MyProfile extends BaseClass {
     public void fillMainInfo() {
 //        @FindBy(css = "div[data-ajax-slave='/lk/biography/cv/lookup/cities/by_country/']")
 //        WebElement el1;
-        clickElement(EL1);
-        clickElement(driver.findElement(COUNTRY_VALUE));
-        clickElement(driver.findElement(ADD_CITY));
-        clickElement(driver.findElement(CITY_VALUE));
-        clickElement(driver.findElement(ADD_ENGLISH_LEVEL));
-        clickElement(driver.findElement(ENGLISH_LEVEL_VALUE));
+//        clickElement(EL1);
+//        clickElement(driver.findElement(COUNTRY_VALUE));
+//        clickElement(driver.findElement(ADD_CITY));
+//        clickElement(driver.findElement(CITY_VALUE));
+//        clickElement(driver.findElement(ADD_ENGLISH_LEVEL));
+//        clickElement(driver.findElement(ENGLISH_LEVEL_VALUE));
 
-//        driver.findElement(ADD_COUNTRY).click();
-//        driver.findElement(COUNTRY_VALUE).click();
-//        driver.findElement(ADD_CITY).click();
-//        driver.findElement(CITY_VALUE).click();
-//        driver.findElement(ADD_ENGLISH_LEVEL).click();
-//        driver.findElement(ENGLISH_LEVEL_VALUE).click();
+        driver.findElement(ADD_COUNTRY).click();
+        driver.findElement(COUNTRY_VALUE).click();
+        driver.findElement(ADD_CITY).click();
+        driver.findElement(CITY_VALUE).click();
+        driver.findElement(ADD_ENGLISH_LEVEL).click();
+        driver.findElement(ENGLISH_LEVEL_VALUE).click();
 
         if (!driver.findElement(RELOCATION_YES_CHECK).isSelected()) {
 
@@ -135,33 +135,33 @@ public class MyProfile extends BaseClass {
     @Step("Fill additional info")
     public void fillAdditionalContactInfo() {
 //        wait.until(ExpectedConditions.elementToBeClickable(CONTACT_TYPE_LOCATOR));
-        WebElement el = driver.findElement(CONTACT_TYPE_LOCATOR);
-        clickElement(el);
-        clickElement(driver.findElement(CONTACT_VK));
-        clickElement(driver.findElement(CONTACT_VALUE));
+//        WebElement el = driver.findElement(CONTACT_TYPE_LOCATOR);
+//        clickElement(el);
+//        clickElement(driver.findElement(CONTACT_VK));
+//        clickElement(driver.findElement(CONTACT_VALUE));
 
-//        driver.findElement(CONTACT_TYPE_LOCATOR).click();
-//        driver.findElement(CONTACT_VK).click();
-//        driver.findElement(CONTACT_VALUE).clear();
-//        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(CONTACT_VALUE)).sendKeys("some.vk.com");
+        driver.findElement(CONTACT_TYPE_LOCATOR).click();
+        driver.findElement(CONTACT_VK).click();
+        driver.findElement(CONTACT_VALUE).clear();
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(CONTACT_VALUE)).sendKeys("some.vk.com");
 
-        clickElement(driver.findElement(ADD_CONTACT_LOCATOR));
-        clickElement(driver.findElement(SECOND_CONTACT_TYPE_LOCATOR));
+//        clickElement(driver.findElement(ADD_CONTACT_LOCATOR));
+//        clickElement(driver.findElement(SECOND_CONTACT_TYPE_LOCATOR));
 
-//        driver.findElement(ADD_CONTACT_LOCATOR).click();
-//        driver.findElement(SECOND_CONTACT_TYPE_LOCATOR).click();
+        driver.findElement(ADD_CONTACT_LOCATOR).click();
+        driver.findElement(SECOND_CONTACT_TYPE_LOCATOR).click();
 
         action.moveToElement(driver.findElement(CONTACT_TELEGA)).perform();
         clickElement(driver.findElement(CONTACT_TELEGA));
 
-//        driver.findElement(CONTACT_TELEGA).click();
+        driver.findElement(CONTACT_TELEGA).click();
         driver.findElement(CONTACT_VALUE2).clear();
         new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(CONTACT_VALUE2)).sendKeys("123456789");
 
         logger.info("Contact data filled");
 
-        clickElement(driver.findElement(SAVE_CONTINUE));
-//        driver.findElement(SAVE_CONTINUE).click();
+//        clickElement(driver.findElement(SAVE_CONTINUE));
+        driver.findElement(SAVE_CONTINUE).click();
 
         logger.info("Changes in \"my profile\" saved");
     }
