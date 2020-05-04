@@ -9,6 +9,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -60,18 +61,22 @@ public class MyProfile extends BaseClass {
     private static final By GET_SECOND_CONTACT_TYPE = By.xpath("(//div[@class='input input_full lk-cv-block__input input_straight-bottom-right" +
             " input_straight-top-right input_no-border-right lk-cv-block__input_fake lk-cv-block__input_select-fake js-custom-select-presentation'])[2]");
 
+    @FindBy(css = "div[data-ajax-slave='/lk/biography/cv/lookup/cities/by_country/']")
+    private static WebElement EL1;
+
     WebDriverWait wait = new WebDriverWait(driver, 20);
     Actions action = new Actions(driver);
 
     public void fillData(String firstname, String firstnameLatin, String lastname, String lastnameLatin, String birthDate, String blogName, String pathToPhoto) {
         fillPersonalData(firstname, firstnameLatin, lastname, lastnameLatin, birthDate, blogName, pathToPhoto);
 
-//        fillMainInfo();
+        fillMainInfo();
 
         fillAdditionalContactInfo();
 
         driver.findElement(SAVE_CONTINUE).click();
     }
+
     @Step("Fill personal data")
     public void fillPersonalData(String firstname, String firstnameLatin, String lastname, String lastnameLatin, String birthDate, String blogName, String pathToPhoto) {
         driver.findElement(FIRSTNAME_LOCATOR).clear();
@@ -94,43 +99,69 @@ public class MyProfile extends BaseClass {
         logger.info("Personal data filled");
 
     }
+
     @Step("Fill main info")
     public void fillMainInfo() {
-        driver.findElement(ADD_COUNTRY).click();
-        driver.findElement(COUNTRY_VALUE).click();
-        driver.findElement(ADD_CITY).click();
-        driver.findElement(CITY_VALUE).click();
-        driver.findElement(ADD_ENGLISH_LEVEL).click();
-        driver.findElement(ENGLISH_LEVEL_VALUE).click();
+//        @FindBy(css = "div[data-ajax-slave='/lk/biography/cv/lookup/cities/by_country/']")
+//        WebElement el1;
+        clickElement(EL1);
+        clickElement(driver.findElement(COUNTRY_VALUE));
+        clickElement(driver.findElement(ADD_CITY));
+        clickElement(driver.findElement(CITY_VALUE));
+        clickElement(driver.findElement(ADD_ENGLISH_LEVEL));
+        clickElement(driver.findElement(ENGLISH_LEVEL_VALUE));
 
-        if(!driver.findElement(RELOCATION_YES_CHECK).isSelected()) {
-        driver.findElement(RELOCATION_YES_RADIO_BUTTON).click();
+//        driver.findElement(ADD_COUNTRY).click();
+//        driver.findElement(COUNTRY_VALUE).click();
+//        driver.findElement(ADD_CITY).click();
+//        driver.findElement(CITY_VALUE).click();
+//        driver.findElement(ADD_ENGLISH_LEVEL).click();
+//        driver.findElement(ENGLISH_LEVEL_VALUE).click();
+
+        if (!driver.findElement(RELOCATION_YES_CHECK).isSelected()) {
+
+            clickElement(driver.findElement(RELOCATION_YES_RADIO_BUTTON));
+//        driver.findElement(RELOCATION_YES_RADIO_BUTTON).click();
         }
         if (!driver.findElement(CHECK_FULL_DAY).isSelected()) {
-        driver.findElement(SET_FULL_DAY).click();
+
+            clickElement(driver.findElement(SET_FULL_DAY));
+//            driver.findElement(SET_FULL_DAY).click();
         }
 
         logger.info("Main info filled");
     }
+
     @Step("Fill additional info")
     public void fillAdditionalContactInfo() {
-        wait.until(ExpectedConditions.elementToBeClickable(CONTACT_TYPE_LOCATOR));
-        driver.findElement(CONTACT_TYPE_LOCATOR).click();
-        driver.findElement(CONTACT_VK).click();
-        driver.findElement(CONTACT_VALUE).clear();
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(CONTACT_VALUE)).sendKeys("some.vk.com");
+//        wait.until(ExpectedConditions.elementToBeClickable(CONTACT_TYPE_LOCATOR));
+        WebElement el = driver.findElement(CONTACT_TYPE_LOCATOR);
+        clickElement(el);
+        clickElement(driver.findElement(CONTACT_VK));
+        clickElement(driver.findElement(CONTACT_VALUE));
 
-        driver.findElement(ADD_CONTACT_LOCATOR).click();
-        driver.findElement(SECOND_CONTACT_TYPE_LOCATOR).click();
+//        driver.findElement(CONTACT_TYPE_LOCATOR).click();
+//        driver.findElement(CONTACT_VK).click();
+//        driver.findElement(CONTACT_VALUE).clear();
+//        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(CONTACT_VALUE)).sendKeys("some.vk.com");
+
+        clickElement(driver.findElement(ADD_CONTACT_LOCATOR));
+        clickElement(driver.findElement(SECOND_CONTACT_TYPE_LOCATOR));
+
+//        driver.findElement(ADD_CONTACT_LOCATOR).click();
+//        driver.findElement(SECOND_CONTACT_TYPE_LOCATOR).click();
 
         action.moveToElement(driver.findElement(CONTACT_TELEGA)).perform();
-        driver.findElement(CONTACT_TELEGA).click();
+        clickElement(driver.findElement(CONTACT_TELEGA));
+
+//        driver.findElement(CONTACT_TELEGA).click();
         driver.findElement(CONTACT_VALUE2).clear();
         new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(CONTACT_VALUE2)).sendKeys("123456789");
 
         logger.info("Contact data filled");
 
-        driver.findElement(SAVE_CONTINUE).click();
+        clickElement(driver.findElement(SAVE_CONTINUE));
+//        driver.findElement(SAVE_CONTINUE).click();
 
         logger.info("Changes in \"my profile\" saved");
     }
@@ -145,6 +176,7 @@ public class MyProfile extends BaseClass {
                 + "return true;";
         ((JavascriptExecutor) driver).executeScript(unhideScript, element);
     }
+
     @Step("Get actual results for Personal data")
     public List<String> getPersonalData() {
         List<String> personalDataActual = new ArrayList();
@@ -181,17 +213,17 @@ public class MyProfile extends BaseClass {
         mainInfoActual.add(cityActual);
 
         String relocationActual;
-        if(driver.findElement(RELOCATION_YES_CHECK).isSelected()) {
+        if (driver.findElement(RELOCATION_YES_CHECK).isSelected()) {
             relocationActual = "YES";
         } else relocationActual = "NO";
         mainInfoActual.add(relocationActual);
 
         String employmentActual;
-        if(driver.findElement(CHECK_FULL_DAY).isSelected()) {
+        if (driver.findElement(CHECK_FULL_DAY).isSelected()) {
             employmentActual = "full-time";
-        } else if(driver.findElement(CHECK_PART_TIME).isSelected()) {
+        } else if (driver.findElement(CHECK_PART_TIME).isSelected()) {
             employmentActual = "part-time";
-        } else if(driver.findElement(CHECK_REMOTE).isSelected()) {
+        } else if (driver.findElement(CHECK_REMOTE).isSelected()) {
             employmentActual = "remote";
         } else employmentActual = "not selected";
         mainInfoActual.add(employmentActual);

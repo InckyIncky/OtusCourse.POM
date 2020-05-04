@@ -13,6 +13,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 public class TestRunner extends BaseClass {
     AppConfigs cfg = ConfigFactory.create(AppConfigs.class);
     private static final Logger logger = LogManager.getLogger(TestRunner.class);
@@ -93,5 +96,20 @@ public class TestRunner extends BaseClass {
 //        Assertions.assertLinesMatch(expectedContactData, myProfileCheck.getContactData());
         logger.info("expected contact data matches actual");
 
+    }
+
+    @Test
+    public void runTest2() {
+        int a = 2;
+        int b = 5;
+        int c = a + b;
+        assertNotNull(c);
+    }
+
+    @Test
+    public void runTest3() {
+        String one = "Test";
+        String two = "Passed";
+        assertEquals("TestPassed", one + two);
     }
 }
