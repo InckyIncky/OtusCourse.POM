@@ -24,7 +24,7 @@ public class MyProfile extends BaseClass {
     private static final By LASTNAME_LOCATOR = By.id("id_lname");
     private static final By LASTNAME_LATIN_LOCATOR = By.id("id_lname_latin");
     private static final By BLOG_NAME_LOCATOR = By.id("id_blog_name");
-    private static final By ADD_PHOTO_LOCATOR = By.cssSelector("input[class='file-in-button js-avatar-file']");
+//    private static final By ADD_PHOTO_LOCATOR = By.cssSelector("input[class='file-in-button js-avatar-file']");
     private static final By BIRTH_DATE_LOCATOR = By.name("date_of_birth");
 
 

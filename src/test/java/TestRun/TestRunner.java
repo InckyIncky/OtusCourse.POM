@@ -16,6 +16,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+
 public class TestRunner extends BaseClass {
     AppConfigs cfg = ConfigFactory.create(AppConfigs.class);
     private static final Logger logger = LogManager.getLogger(TestRunner.class);
@@ -112,4 +113,5 @@ public class TestRunner extends BaseClass {
         String two = "Passed";
         assertEquals("TestPassed", one + two);
     }
+
 }
