@@ -2,8 +2,6 @@ package Pages;
 
 import TestRun.BaseClass;
 import io.qameta.allure.Step;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -16,8 +14,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.*;
 
 public class MyProfile extends BaseClass {
-    private static final Logger logger = LogManager.getLogger(MyProfile.class);
-
 
     private static final By FIRSTNAME_LOCATOR = By.id("id_fname");
     private static final By FIRSTNAME_LATIN_LOCATOR = By.id("id_fname_latin");
@@ -44,6 +40,7 @@ public class MyProfile extends BaseClass {
 
     private static final By ADD_CONTACT_LOCATOR = By.cssSelector("button[class='lk-cv-block__action " +
             "lk-cv-block__action_md-no-spacing js-formset-add js-lk-cv-custom-select-add']");
+
     private static final By CONTACT_TYPE_LOCATOR = By.cssSelector("div[class='select lk-cv-block__input " +
             "lk-cv-block__input_3 lk-cv-block__input_md-4 js-lk-cv-custom-select']");
     private static final By SECOND_CONTACT_TYPE_LOCATOR = By.xpath("(//div[@class='select lk-cv-block__input " +
@@ -102,14 +99,6 @@ public class MyProfile extends BaseClass {
 
     @Step("Fill main info")
     public void fillMainInfo() {
-//        @FindBy(css = "div[data-ajax-slave='/lk/biography/cv/lookup/cities/by_country/']")
-//        WebElement el1;
-//        clickElement(EL1);
-//        clickElement(driver.findElement(COUNTRY_VALUE));
-//        clickElement(driver.findElement(ADD_CITY));
-//        clickElement(driver.findElement(CITY_VALUE));
-//        clickElement(driver.findElement(ADD_ENGLISH_LEVEL));
-//        clickElement(driver.findElement(ENGLISH_LEVEL_VALUE));
 
         driver.findElement(ADD_COUNTRY).click();
         driver.findElement(COUNTRY_VALUE).click();
@@ -121,12 +110,10 @@ public class MyProfile extends BaseClass {
         if (!driver.findElement(RELOCATION_YES_CHECK).isSelected()) {
 
             clickElement(driver.findElement(RELOCATION_YES_RADIO_BUTTON));
-//        driver.findElement(RELOCATION_YES_RADIO_BUTTON).click();
         }
         if (!driver.findElement(CHECK_FULL_DAY).isSelected()) {
 
             clickElement(driver.findElement(SET_FULL_DAY));
-//            driver.findElement(SET_FULL_DAY).click();
         }
 
         logger.info("Main info filled");
@@ -134,25 +121,16 @@ public class MyProfile extends BaseClass {
 
     @Step("Fill additional info")
     public void fillAdditionalContactInfo() {
-//        wait.until(ExpectedConditions.elementToBeClickable(CONTACT_TYPE_LOCATOR));
-//        WebElement el = driver.findElement(CONTACT_TYPE_LOCATOR);
-//        clickElement(el);
-//        clickElement(driver.findElement(CONTACT_VK));
-//        clickElement(driver.findElement(CONTACT_VALUE));
 
         driver.findElement(CONTACT_TYPE_LOCATOR).click();
         driver.findElement(CONTACT_VK).click();
         driver.findElement(CONTACT_VALUE).clear();
         new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(CONTACT_VALUE)).sendKeys("some.vk.com");
 
-//        clickElement(driver.findElement(ADD_CONTACT_LOCATOR));
-//        clickElement(driver.findElement(SECOND_CONTACT_TYPE_LOCATOR));
-
         driver.findElement(ADD_CONTACT_LOCATOR).click();
         driver.findElement(SECOND_CONTACT_TYPE_LOCATOR).click();
 
         action.moveToElement(driver.findElement(CONTACT_TELEGA)).perform();
-//        clickElement(driver.findElement(CONTACT_TELEGA));
 
         driver.findElement(CONTACT_TELEGA).click();
         driver.findElement(CONTACT_VALUE2).clear();
@@ -160,7 +138,6 @@ public class MyProfile extends BaseClass {
 
         logger.info("Contact data filled");
 
-//        clickElement(driver.findElement(SAVE_CONTINUE));
         driver.findElement(SAVE_CONTINUE).click();
 
         logger.info("Changes in \"my profile\" saved");

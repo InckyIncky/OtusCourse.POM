@@ -11,15 +11,20 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
+@ExtendWith(MyWatcher.class)
 public class TestRunner extends BaseClass {
     AppConfigs cfg = ConfigFactory.create(AppConfigs.class);
-    private static final Logger logger = LogManager.getLogger(TestRunner.class);
 
 
     String firstname = cfg.firstName();
@@ -94,7 +99,7 @@ public class TestRunner extends BaseClass {
         expectedContactData.add(secondContactValue);
         logger.info("Expected results for contact data created");
 
-//        Assertions.assertLinesMatch(expectedContactData, myProfileCheck.getContactData());
+        Assertions.assertLinesMatch(expectedContactData, myProfileCheck.getContactData());
         logger.info("expected contact data matches actual");
 
     }
@@ -105,6 +110,7 @@ public class TestRunner extends BaseClass {
         int b = 5;
         int c = a + b;
         assertNotNull(c);
+        logger.info("test finished");
     }
 
     @Test
@@ -112,6 +118,17 @@ public class TestRunner extends BaseClass {
         String one = "Test";
         String two = "Passed";
         assertEquals("TestPassed", one + two);
+        logger.info("test finished");
     }
 
+    @Test
+    public void runDateTest() {
+        LocalDate date = LocalDate.now().plusDays(5);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+
+        String expiryDateTest = date.format(formatter);
+
+        System.out.println(expiryDateTest);
+    }
 }

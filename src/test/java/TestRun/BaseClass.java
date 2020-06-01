@@ -1,6 +1,5 @@
 package TestRun;
 
-import DriverFactory.Browsers;
 import DriverFactory.WebDriverFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +21,7 @@ public abstract class BaseClass {
     public static WebDriver driver;
     public WebDriverWait wait;
 
-    private static final Logger logger = LogManager.getLogger(BaseClass.class);
+    protected static final Logger logger = LogManager.getLogger("pom");
 
 
     @BeforeAll
